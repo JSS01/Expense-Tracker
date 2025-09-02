@@ -1,0 +1,7 @@
+.box {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    border-style: solid;
+}

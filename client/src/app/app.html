@@ -2,10 +2,14 @@
   <h1> {{ name1() }}'s Expense Tracker </h1>
  
   <div>
+    <button> New Expense </button>
     @for (exp of expenses; track exp.id) {
       <app-expense 
-        [expenseName]="exp.name"
-        [expenseAmount]="exp.amount"> 
+        [id]="exp.id" 
+        [name]="exp.name"
+        [amount]="exp.amount"
+        [category]="exp.category"
+        [date]="exp.date"> 
       </app-expense>
     }
   </div>

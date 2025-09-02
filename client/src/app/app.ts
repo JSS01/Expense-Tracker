@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
-import { Expense } from './components/expense/expense';
+import { ExpenseComponent } from './components/expense/expense';
+import { Expense } from './components/expense/model';
 import { RouterOutlet } from '@angular/router';
 // 3 Parts of an Angular Component
 // Typescript Class (Defines component logic, e.g. event handlers)
@@ -9,7 +10,7 @@ import { RouterOutlet } from '@angular/router';
 @Component({
   // selector is the name of the component, i.e. <app-root> </app-root>
   selector: 'app-root',
-  imports: [RouterOutlet, Expense], // import Components here
+  imports: [RouterOutlet, ExpenseComponent], // import Components here
   // template and styles could be inline here if we want 
   // templateUrl and styleUrl tell us where the template and styles are
   templateUrl: './app.html',
@@ -18,20 +19,21 @@ import { RouterOutlet } from '@angular/router';
 export class App {
   // Like useEffect 
   ngOnInit() {
-    console.log("[Me] App Component mounted");
+    console.log("App Component mounted");
   }
   // Can use signal or not for state, either works
-  protected readonly title = signal('angular-app');
+  title = signal('client');
   variable = signal("coolVariable");
   name1 = signal("Jacob");
   inputText = "Idek";
 
-  expenses = [
-    { id: 1, name: 'Groceries', amount: 50 },
-    { id: 2, name: 'Rent', amount: 1200 },
-    { id: 3, name: 'Utilities', amount: 200 }
-  ];
 
+  expenses: Expense[] = [
+      { id: 1, name: 'Groceries', amount: 50, category: "food", date: new Date()},
+      { id: 2, name: 'Rent', amount: 1200, category: "utilities", date: new Date()},
+      { id: 3, name: 'Utilities', amount: 200, category: "housing", date: new Date()}
+    ];
+  
 
   printText = () => {
     console.log(`Input is: ${this.inputText}`)
